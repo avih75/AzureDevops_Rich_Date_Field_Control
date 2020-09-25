@@ -1,9 +1,15 @@
-import { Controller } from "./dateControl"; 
+import { IWorkItemFieldChangedArgs } from "TFS/WorkItemTracking/ExtensionContracts";
+import { Controller } from "./dateControl";
 
+let controller: Controller;
 let provider = () => {
     return {
         onLoaded: () => {
-            new Controller(); 
+            controller = new Controller();
+        },
+        onFieldChanged: (fieldChangedArgs: IWorkItemFieldChangedArgs) => {
+            let changedValue = fieldChangedArgs.changedFields;
+            controller.FieldChanged(changedValue)
         }
     };
 };

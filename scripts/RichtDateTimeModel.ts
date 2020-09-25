@@ -1,4 +1,5 @@
 export class RichDateTime {
+
     ControlName: string
     DateValue: Date
     DateValueRefName: string
@@ -13,6 +14,8 @@ export class RichDateTime {
     State: string
     MaxDate: Date
     MinDate: Date
+    ActualState: string
+
     constructor() {
         this.DateFutureLimitation = false
         this.DatePastLimitation = false
@@ -34,50 +37,48 @@ export class RichDateTime {
     }
     public SetValues(recivedValues: IDictionaryStringTo<Object>) {
         if (recivedValues[this.DateValueRefName].toString())
-            this.DateValue = this.ConvertStringToShortDate(recivedValues[this.DateValueRefName].toString());
+            this.DateValue = new Date(recivedValues[this.DateValueRefName].toString());
         else
             this.DateValue = undefined;
         if (this.DateFutureLimitation) {
             if (this.DateMaxRefName) {
-                this.DateMaxValue = this.ConvertStringToShortDate(recivedValues[this.DateMaxRefName].toString());
+                this.DateMaxValue = new Date(recivedValues[this.DateMaxRefName].toString());
             }
 
             this.MaxDate = new Date(this.DateMaxValue.getTime() + (86400000 * this.MaxDays));
         }
         if (this.DatePastLimitation) {
             if (this.DateMinRefName) {
-                this.DateMinValue = this.ConvertStringToShortDate(recivedValues[this.DateMinRefName].toString());
+                this.DateMinValue = new Date(recivedValues[this.DateMinRefName].toString());
             }
             this.MinDate = new Date(this.DateMaxValue.getTime() - (86400000 * this.MinDays));
         }
-    }
-    public ConvertStringToShortDate(date: string) {
-        return new Date(date);
-    }
-    public ValideDate(date: Date) {
-        let selectedDay: number = Date.parse(date.toString());
-        if (this.DateMaxValue) {
-            let UpperReffDate: number = Date.parse(this.DateMaxValue.toString());
-            if (selectedDay > UpperReffDate + this.MaxDays) {
-                $("#dateErrorLabel").text("date bigger then max range");
-                return false;
-            }
+        if (this.State) {
+            this.ActualState = recivedValues["System.State"].toString();
         }
-        if (this.DateMinValue) {
-            let LowerReffDate: number = Date.parse(this.DateMinValue.toString());
-            if (selectedDay < LowerReffDate + this.MinDays) {
-                $("#dateErrorLabel").text("date lower then min range");
-                return false;
-            }
-        }
-        $("#dateErrorLabel").text("");
-        this.DateValue = date;
-        return true;
     }
-    public CheckIfDellay(actualState: string) {
-        if (this.State && this.DateValue >= new Date && actualState == this.State)
+    public CheckIfDellay() {
+        if (this.State && this.DateValue < new Date && this.ActualState == this.State)
             return true;
         else
             return false
+    }
+    public SetNewValues(newValues: Array<{ refName: string, value: string }>) {
+        newValues.forEach(valueChange => {
+            if (valueChange.refName == this.DateValueRefName) {
+                this.DateValue = new Date(valueChange.value);
+            }
+            else if (this.DateFutureLimitation && valueChange.refName == this.DateMaxRefName) {
+                this.DateMaxValue = new Date(valueChange.value);
+                this.MaxDate = new Date(this.DateMaxValue.getTime() + (86400000 * this.MaxDays));
+            }
+            else if (valueChange.refName == this.DateMinRefName) {
+                this.DateMinValue = new Date(valueChange.value);
+                this.MinDate = new Date(this.DateMaxValue.getTime() - (86400000 * this.MinDays));
+            }
+            else if (valueChange.refName == "System.State") {
+                this.ActualState = valueChange.value;
+            }
+        });
     }
 }

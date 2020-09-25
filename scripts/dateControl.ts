@@ -1,4 +1,4 @@
-import { CreateView } from "./dateView";
+import { CreateView, WorkItemFieldChanged } from "./dateView";
 import { RichDateTime } from "./RichtDateTimeModel";
 export class Controller {
     constructor() {
@@ -17,5 +17,8 @@ export class Controller {
         model.State = inputs["stateToFollow"];
         VSS.resize();
         CreateView(model);
+    }
+    public FieldChanged(changedFields: { [key: string]: any; }) {
+        WorkItemFieldChanged(changedFields);
     }
 }

@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "Rich-Date-Control",
-    "version": "1.0.81",
+    "version": "1.0.105",
     "name": "Give you the option to set date and mnipulate it",
     "scopes": [
         "vso.code_full",
