@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <script src="scripts/VSS.SDK.min.js"></script>
+    <title>Href Link Control</title>
+    <script>
+        VSS.init({
+            explicitNotifyLoaded: true,
+            usePlatformScripts: true,
+            usePlatformStyles: true,
+            configureModuleLoader: true,
+            applyTheme: true
+        });
+        VSS.resize(1, 1);
+        VSS.require(["scripts/dateApp"], function() {
+            VSS.notifyLoadSucceeded();
+        });
+    </script>
+    <style>
+        .date {
+            border: none;
+            font-size: small;
+            box-sizing: border-box;
+        }
+        
+        .date:focus {
+            border-width: 1px;
+            border-color: blue;
+        }
+        
+        .date:hover {
+            border-width: 1px;
+            border-color: lightgray;
+        }
+        
+        #delayed {
+            background-color: lightpink;
+        }
+    </style>
+</head>
+
+<body style="background-color: inherit">
+    <label id="label" style="color: gray;width: 100%;"></label><br/>
+    <input id="datepicker" type="date" name="date" style="width: 50%;" type="text" placeholder="" class="date" />
+    <!-- <input id="datepicker" name="date" style="width: 50%;" type="text" placeholder="select" onmouseout="(this.type='text')" onmouseover="(this.type='date')" class="date" /> -->
+    <label id="dateErrorLabel" style="color: red;font-size: smaller;width: 50%;"></label>
+
+    <!-- <input type="date" id="datepicker" class="date" placeholder="select date...." /> -->
+</body>
+
+</html>
+
+<!-- "branding": {
+    "color": "rgb(34, 34, 34)",
+    "theme": "dark"
+}, -->
+<!-- "icon": {
+    "dark": "img/world.png",
+    "light": "img/world.png"
+  } -->
