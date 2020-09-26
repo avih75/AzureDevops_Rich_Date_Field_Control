@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "Rich-Date-Control",
-    "version": "1.0.105",
+    "version": "1.0.107",
     "name": "Give you the option to set date and mnipulate it",
     "scopes": [
         "vso.code_full",
@@ -55,8 +55,8 @@
             "uri": "dateIndex.html",
             "inputs": [{
                 "id": "dateValue",
-                "name": "Date",
-                "description": "This field get the Date value",
+                "name": "Date Field",
+                "description": "This field get the Date value field",
                 "type": "WorkItemField",
                 "properties": {
                     "workItemFieldTypes": [
@@ -69,8 +69,8 @@
                 }
             }, {
                 "id": "controlName",
-                "name": "controlName",
-                "description": "This field get the control name for the label",
+                "name": "Label",
+                "description": "This field get the name for the label",
                 "type": "TextArea",
                 "validation": {
                     "dataType": "String",
@@ -78,8 +78,8 @@
                 }
             }, {
                 "id": "pastLimitation",
-                "name": "pastLimitation",
-                "description": "turn on and off the past date limitation",
+                "name": "Min Date Limitation",
+                "description": "(true/false) turn on and off the past date limitation",
                 "type": "CheckBox",
                 "validation": {
                     "dataType": "Boolean",
@@ -87,8 +87,8 @@
                 }
             }, {
                 "id": "backDateRef",
-                "name": "backValue",
-                "description": "This field get the min Date value",
+                "name": "Min Date Field Limitation",
+                "description": "This field get the min Date value field",
                 "type": "WorkItemField",
                 "properties": {
                     "workItemFieldTypes": [
@@ -101,8 +101,8 @@
                 }
             }, {
                 "id": "backValue",
-                "name": "backLimitDays",
-                "description": "This field get max back days value",
+                "name": "Min Days Gap From Reference Date",
+                "description": "(number) This field get max back days value",
                 "type": "TextArea",
                 "validation": {
                     "dataType": "String",
@@ -110,16 +110,16 @@
                 }
             }, {
                 "id": "futureLimitation",
-                "name": "futureLimitation",
-                "description": "turn on and off the future date limitation",
+                "name": "Max Date Limitation",
+                "description": "(true/false) turn on and off the future date limitation",
                 "validation": {
                     "dataType": "Boolean",
                     "isRequired": true
                 }
             }, {
                 "id": "forwordDatRef",
-                "name": "forwordDatRef",
-                "description": "This field get the Max Date value",
+                "name": "Max Date Field Limitation",
+                "description": "This field get the Max Date value field",
                 "type": "WorkItemField",
                 "properties": {
                     "workItemFieldTypes": [
@@ -132,8 +132,8 @@
                 }
             }, {
                 "id": "forwordValue",
-                "name": "forwordLimitDays",
-                "description": "This field get max back days value",
+                "name": "Max Days Gap From Reference Date",
+                "description": "(number) This field get max back days value",
                 "type": "TextArea",
                 "validation": {
                     "dataType": "String",
@@ -141,7 +141,7 @@
                 }
             }, {
                 "id": "stateToFollow",
-                "name": "stateToFollow",
+                "name": "State Follow",
                 "description": "This field get max back days value",
                 "type": "TextArea",
                 "validation": {
