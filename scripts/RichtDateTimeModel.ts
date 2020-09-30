@@ -1,6 +1,5 @@
 export class RichDateTime {
 
-    ControlName: string
     DateValue: Date
     DateValueRefName: string
     DateFutureLimitation: boolean
@@ -15,6 +14,7 @@ export class RichDateTime {
     MaxDate: Date
     MinDate: Date
     ActualState: string
+    Is: boolean
 
     constructor() {
         this.DateFutureLimitation = false
@@ -23,6 +23,7 @@ export class RichDateTime {
         this.MinDays = 0
         this.DateMaxValue = new Date;
         this.DateMinValue = new Date;
+        this.Is = false;
     }
     public GetFieldRefNames() {
         let fieldsRefNames: Array<string> = new Array<string>();
@@ -58,7 +59,9 @@ export class RichDateTime {
         }
     }
     public CheckIfDellay() {
-        if (this.State && this.DateValue < new Date && this.ActualState == this.State)
+        if (this.State && this.DateValue < new Date && this.ActualState == this.State && this.Is)
+            return true;
+        else if (this.State && this.DateValue < new Date && this.ActualState != this.State && !this.Is)
             return true;
         else
             return false

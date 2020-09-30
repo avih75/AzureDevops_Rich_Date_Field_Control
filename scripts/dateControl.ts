@@ -5,7 +5,8 @@ export class Controller {
         let inputs = VSS.getConfiguration().witInputs;
         let model: RichDateTime = new RichDateTime();
         model.DateValueRefName = inputs["dateValue"];
-        model.ControlName = inputs["controlName"];
+        if (inputs["isOrIsNot"] == "Is")
+            model.Is = true;
         if (inputs["futureLimitation"] == "true")
             model.DateFutureLimitation = true;
         model.DateMaxRefName = inputs["forwordDatRef"];

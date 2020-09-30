@@ -1,8 +1,8 @@
 import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
 import { RichDateTime } from "./RichtDateTimeModel";
-
+import RestClient = require("TFS/WorkItemTracking/RestClient"); 
+let client = RestClient.getClient();
 let dateModel: RichDateTime;
-
 export function WorkItemFieldChanged(changedFields: { [key: string]: any; }) {
     let valuesList: Array<{ refName: string, value: string }> = new Array<{ refName: string, value: string }>();
     let newDateValue = changedFields[dateModel.DateValueRefName];
@@ -25,16 +25,29 @@ export function WorkItemFieldChanged(changedFields: { [key: string]: any; }) {
         dateModel.SetNewValues(valuesList);
         RefreshTheView();
     }
+    IsReadOnly(dateModel.DateValueRefName).then((readOnly: boolean) => {
+        if (readOnly) {
+            $("#datepicker").attr("disabled", "true");
+        }
+        else {
+            $("#datepicker").removeAttr("disabled");
+        }
+    });
 }
-
 export function CreateView(model: RichDateTime) {
     dateModel = model;
     GetValues();
-    $("#body").css("background-color", "inherit");
-    $("#label").text(model.ControlName);
+    $("#body").css("background-color", "inherit");     
     $("#datepicker").change(() => OnFieldChanged());
+    IsReadOnly(dateModel.DateValueRefName).then((readOnly: boolean) => {
+        if (readOnly) {
+            $("#datepicker").attr("disabled", "true");
+        }
+        else {
+            $("#datepicker").removeAttr("disabled");
+        }
+    });
 }
-
 function GetValues() {
     let fieldsRefNames: Array<string> = dateModel.GetFieldRefNames();
     fieldsRefNames.push("System.State");
@@ -81,3 +94,6 @@ function ConverToViewMode(date: Date) {
     let today = date.getFullYear() + "-" + (month) + "-" + (day);
     return today;
 }
+async function IsReadOnly(refName: string) { 
+    return await (await client.getField(refName, "nxowdncjofnmc")).readOnly; 
+} 

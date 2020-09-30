@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "Rich-Date-Control",
-    "version": "1.0.107",
+    "version": "1.0.113",
     "name": "Give you the option to set date and mnipulate it",
     "scopes": [
         "vso.code_full",
@@ -141,8 +141,17 @@
                 }
             }, {
                 "id": "stateToFollow",
-                "name": "State Follow",
-                "description": "This field get max back days value",
+                "name": "State to Follow",
+                "description": "This field get the state you want to follow",
+                "type": "TextArea",
+                "validation": {
+                    "dataType": "String",
+                    "isRequired": false
+                }
+            }, {
+                "id": "stateOfState",
+                "name": "State of state to Follow",
+                "description": "This field get the state of the state you want to follow (Is/IsNot)",
                 "type": "TextArea",
                 "validation": {
                     "dataType": "String",
