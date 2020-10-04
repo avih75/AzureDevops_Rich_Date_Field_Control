@@ -1,6 +1,6 @@
 import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
 import { RichDateTime } from "./RichtDateTimeModel";
-import RestClient = require("TFS/WorkItemTracking/RestClient"); 
+import RestClient = require("TFS/WorkItemTracking/RestClient");
 let client = RestClient.getClient();
 let dateModel: RichDateTime;
 export function WorkItemFieldChanged(changedFields: { [key: string]: any; }) {
@@ -37,7 +37,8 @@ export function WorkItemFieldChanged(changedFields: { [key: string]: any; }) {
 export function CreateView(model: RichDateTime) {
     dateModel = model;
     GetValues();
-    $("#body").css("background-color", "inherit");     
+    $("#body").css("background-color", "inherit");
+    //$("#datepicker").datepicker('dateFormat', dateModel.DateFormat);
     $("#datepicker").change(() => OnFieldChanged());
     IsReadOnly(dateModel.DateValueRefName).then((readOnly: boolean) => {
         if (readOnly) {
@@ -84,8 +85,19 @@ function OnFieldChanged() {
     );
 }
 function GiveShortDate(dateToConvert: Date) {
+    let xD: number = (new Date()).getMonth() + 1;
+    let xx = (new Date()).toLocaleString().split('/');
     let x = dateToConvert.toString().split('-');
-    let dateNew: string = x[2] + "/" + x[1] + "/" + x[0];//+ " 00:00"; 
+    let dateNew: string;
+    if (xx[0] == xD.toString()) {
+        dateNew = x[2] + "/" + x[1] + "/" + x[0];//+ " 00:00";  
+    }
+    else if (xx[1] == xD.toString()) {
+        dateNew = x[1] + "/" + x[2] + "/" + x[0];//+ " 00:00"; 
+    }
+    else {
+        dateNew = x[2] + "/" + x[1] + "/" + x[0];//+ " 00:00";  
+    }
     return dateNew;
 }
 function ConverToViewMode(date: Date) {
@@ -94,6 +106,6 @@ function ConverToViewMode(date: Date) {
     let today = date.getFullYear() + "-" + (month) + "-" + (day);
     return today;
 }
-async function IsReadOnly(refName: string) { 
-    return await (await client.getField(refName, "nxowdncjofnmc")).readOnly; 
+async function IsReadOnly(refName: string) {
+    return await (await client.getField(refName, "nxowdncjofnmc")).readOnly;
 } 

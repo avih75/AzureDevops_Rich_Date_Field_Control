@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "Rich-Date-Control",
-    "version": "1.0.113",
+    "version": "1.0.139",
     "name": "Give you the option to set date and mnipulate it",
     "scopes": [
         "vso.code_full",
@@ -63,15 +63,6 @@
                         "DateTime"
                     ]
                 },
-                "validation": {
-                    "dataType": "String",
-                    "isRequired": true
-                }
-            }, {
-                "id": "controlName",
-                "name": "Label",
-                "description": "This field get the name for the label",
-                "type": "TextArea",
                 "validation": {
                     "dataType": "String",
                     "isRequired": true

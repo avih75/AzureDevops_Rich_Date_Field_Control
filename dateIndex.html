@@ -31,6 +31,7 @@
         }
         
         .date:hover {
+            cursor: pointer;
             border-width: 1px;
             border-color: lightgray;
         }
@@ -42,17 +43,8 @@
 </head>
 
 <body style="background-color: inherit">
-    <input id="datepicker" type="date" name="date" style="width: 50%;" type="text" placeholder="" class="date" onkeydown="return false" />
+    <input id="datepicker" type="date" name="date" style="width: 50%;" placeholder="dd-mm-yyyy" class="date" onkeydown="return false" />
     <label id="dateErrorLabel" style="color: red;font-size: smaller;width: 50%;"></label>
 </body>
 
 </html>
-
-<!-- "branding": {
-    "color": "rgb(34, 34, 34)",
-    "theme": "dark"
-}, -->
-<!-- "icon": {
-    "dark": "img/world.png",
-    "light": "img/world.png"
-  } -->

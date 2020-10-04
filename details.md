@@ -28,15 +28,15 @@ you can have a red sign if the date passed
 
 Configuration:
 
-* Date Field                       : (work item field) that will contain the date (short date)
-* Label                            : (text) The label of the field
+* Date Field                       : (work item field) that will contain the date (short date) 
 * Min Date Limitation              : (true/false) optional, if you want to set future date limitation (default reference is today date)
 * Min Date Field Limitation        : (work item field) optional, if you want to set the future limitation reference to other date field
 * Min Days Gap From Reference Date : (number even negativ) optional, you can set a number of day to gap from the reference future date
 * Max Date Limitation              : (true/false) optional, if you want to set Past date limitation (default reference is today date)
 * Max Date Field Limitation        : (work item field) optional, if you want to set the past limitation reference to other date field
 * Max Days Gap From Reference Date : (number even negativ) optional, you can set a number of day to gap from the reference past date
-* State Follow                     : (string) optional, you can set the state of this time represent, so it will show signal when the time passed and the state still
+* State Follow                     : (string) optional, you can track this state , and show signal when the time passed and the state still
+* State of state to follow         : (Is/IsNot) optional, track if in the state or out of it (default: IsNot)
 
 Installation:
 

@@ -5,6 +5,9 @@ export class Controller {
         let inputs = VSS.getConfiguration().witInputs;
         let model: RichDateTime = new RichDateTime();
         model.DateValueRefName = inputs["dateValue"];
+        if (inputs["dateFormat"]) {
+            model.DateFormat = inputs["dateFormat"];
+        }
         if (inputs["isOrIsNot"] == "Is")
             model.Is = true;
         if (inputs["futureLimitation"] == "true")
