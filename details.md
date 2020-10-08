@@ -2,11 +2,11 @@
 
 ## Features
 ### Date display
-Displaying date only, without time
+Displaying date only, without time  
 ![Layout Customization](img/B1.png)
 
 ### Relative Selection Range
-![Layout Customization](img/C1.png)
+![Layout Customization](img/C1.png)  
 The selection can be ranged between two range-dates.  
 Each range-date can be relative to a range-anchor-date (+- days)
 The range-anchor-date can be either now, another date control in the work item.
@@ -16,7 +16,7 @@ For example:
 * Dynamic range between CreatedDate to DueDate (custom)
 
 ### Target State Date Visualization
-![Layout Customization](img/B2.png)
+![Layout Customization](img/B2.png)  
 The control color visualize work item state target
 For example:
 - Color red when date passed and state Is Not one of "New" (On StartDate)
