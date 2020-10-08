@@ -1,44 +1,44 @@
-Rich Date Control...
+# Rich Date Control
 
-# view short date
-
+## Features
+### Date display
+Displaying date only, without time
 ![Layout Customization](img/B1.png)
 
-First this control give you a short date view.
-
-# deffine limitation for the values
-
+### Relative Selection Range
 ![Layout Customization](img/C1.png)
+The selection can be ranged between two range-dates.  
+Each range-date can be relative to a range-anchor-date (+- days)
+The range-anchor-date can be either now, another date control in the work item.
 
-The second ventage, it give you the option to limit the date that can be pick
-by give him two more date fields that contain the max or min date.
-and with the max day or min days you can fine tune the date days gap from the selected date (default is current date)
+For example: 
+* Two weeks window (Relative Range between Now-7 and Now+7)
+* Dynamic range between CreatedDate to DueDate (custom)
 
-for example :
-you can set two date fields in your form, one represent the open date
-and the second represent the dou date, and to set it a limit of 7 days max (or min) from the open date.
-
-# Nothis if the date passed
-
+### Target State Date Visualization
 ![Layout Customization](img/B2.png)
+The control color visualize work item state target
+For example:
+- Color red when date passed and state Is Not one of "New" (On StartDate)
+- Color red when date passed and state Is one of "New","Fixed", "Resolved" (On DueDate)
 
-you can have a red sign if the date passed
+## Configuration
+### General
+* Date Field                    : (work item field) that will contain the date (short date) 
 
-# Install and Configure
+### Relative Selection Range
+* Range Start Anchor            : (work item field) optional, if you want to set the start of range reference to other date field. Default, now.
+* Range Start Anchor stretch    : (number postive/negative) optional, you can set a number of day to stretch / relax from the Range Start Anchor. Default, 0.
+* Range End Anchor              : (work item field) optional, if you want to set the start of range reference to other date field. Default, now.
+* Range End Anchor stretch      : (number postive/negative) optional, you can set a number of day to stretch / relax from the Range End Anchor. Default, 0.
 
-Configuration:
+### Target Status Date Visualization
+* Status Target                 : (string, one of the System.Status) optional. Target this status and color accordingly.
+* Status Condition              : (Is/IsNot one of) optional, track if in the System.Status Is / Is Not one of given values. 
+* Status Condition Values       : (Is/IsNot one of) optional, track if in the System.Status Is / Is Not one of given values. 
 
-* Date Field                       : (work item field) that will contain the date (short date) 
-* Min Date Limitation              : (true/false) optional, if you want to set future date limitation (default reference is today date)
-* Min Date Field Limitation        : (work item field) optional, if you want to set the future limitation reference to other date field
-* Min Days Gap From Reference Date : (number even negativ) optional, you can set a number of day to gap from the reference future date
-* Max Date Limitation              : (true/false) optional, if you want to set Past date limitation (default reference is today date)
-* Max Date Field Limitation        : (work item field) optional, if you want to set the past limitation reference to other date field
-* Max Days Gap From Reference Date : (number even negativ) optional, you can set a number of day to gap from the reference past date
-* State Follow                     : (string) optional, you can track this state , and show signal when the time passed and the state still
-* State of state to follow         : (Is/IsNot) optional, track if in the state or out of it (default: IsNot)
 
-Installation:
+## Installation:
 
 ![Layout Customization](img/A1.png)
 
