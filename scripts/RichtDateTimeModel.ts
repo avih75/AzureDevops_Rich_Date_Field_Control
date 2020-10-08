@@ -10,7 +10,7 @@ export class RichDateTime {
     DateMinRefName: string
     MaxDays: number
     MinDays: number
-    State: string
+    State: Array<string>;
     MaxDate: Date
     MinDate: Date
     ActualState: string
@@ -18,6 +18,7 @@ export class RichDateTime {
     DateFormat: string
 
     constructor() {
+        this.State = new Array<string>();
         this.DateFutureLimitation = false
         this.DatePastLimitation = false
         this.MaxDays = 0
@@ -38,31 +39,37 @@ export class RichDateTime {
         }
         return fieldsRefNames;
     }
-    public SetValues(recivedValues: IDictionaryStringTo<Object>) {        
+    public SetValues(recivedValues: IDictionaryStringTo<Object>) {
         if (recivedValues[this.DateValueRefName].toString())
             this.DateValue = new Date(recivedValues[this.DateValueRefName].toString());
         else
             this.DateValue = undefined;
         if (this.DateFutureLimitation) {
             if (this.DateMaxRefName) {
-                this.DateMaxValue = new Date(recivedValues[this.DateMaxRefName].toString());
+                if (recivedValues[this.DateMaxRefName])
+                    this.DateMaxValue = new Date(recivedValues[this.DateMaxRefName].toString());
+                else
+                    this.DateMaxValue = new Date;
             }
             this.MaxDate = new Date(this.DateMaxValue.getTime() + (86400000 * this.MaxDays));
         }
         if (this.DatePastLimitation) {
             if (this.DateMinRefName) {
-                this.DateMinValue = new Date(recivedValues[this.DateMinRefName].toString());
+                if (recivedValues[this.DateMinRefName])
+                    this.DateMinValue = new Date(recivedValues[this.DateMinRefName].toString());
+                else
+                    this.DateMinValue = new Date;
             }
-            this.MinDate = new Date(this.DateMinValue.getTime() - (86400000 * this.MinDays));
+            this.MinDate = new Date(this.DateMinValue.getTime() + (86400000 * this.MinDays));
         }
         if (this.State) {
             this.ActualState = recivedValues["System.State"].toString();
         }
     }
     public CheckIfDellay() {
-        if (this.State && this.DateValue < new Date && this.ActualState == this.State && this.Is)
+        if (this.DateValue < new Date && this.State.indexOf(this.ActualState) > -1 && this.Is)
             return true;
-        else if (this.State && this.DateValue < new Date && this.ActualState != this.State && !this.Is)
+        else if (this.DateValue < new Date && this.State.indexOf(this.ActualState) < 0 && !this.Is)
             return true;
         else
             return false

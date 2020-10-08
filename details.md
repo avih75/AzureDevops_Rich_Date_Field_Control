@@ -33,9 +33,8 @@ For example:
 * Range End Anchor stretch      : (number postive/negative) optional, you can set a number of day to stretch / relax from the Range End Anchor. Default, 0.
 
 ### Target Status Date Visualization
-* Status Target                 : (string, one of the System.Status) optional. Target this status and color accordingly.
-* Status Condition              : (Is/IsNot one of) optional, track if in the System.Status Is / Is Not one of given values. 
-* Status Condition Values       : (Is/IsNot one of) optional, track if in the System.Status Is / Is Not one of given values. 
+* Status Target                 : (string, array of System.Status) optional. Target this statuses and color accordingly.
+* Status Condition              : (Is/IsNot one of) optional, track if in the System.Status Is / Is Not one of given values.  
 
 
 ## Installation:

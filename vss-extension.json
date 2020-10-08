@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "Rich-Date-Control",
-    "version": "1.0.139",
+    "version": "1.0.159",
     "name": "Give you the option to set date and mnipulate it",
     "scopes": [
         "vso.code_full",
@@ -20,7 +20,9 @@
         "Work Item",
         "Work Item control",
         "Usability",
-        "date"
+        "Date",
+        "Range",
+        "Limit"
     ],
     "content": {
         "details": {
@@ -56,7 +58,7 @@
             "inputs": [{
                 "id": "dateValue",
                 "name": "Date Field",
-                "description": "This field get the Date value field",
+                "description": "This field get the Date value field of the work item",
                 "type": "WorkItemField",
                 "properties": {
                     "workItemFieldTypes": [
@@ -64,21 +66,20 @@
                     ]
                 },
                 "validation": {
-                    "dataType": "String",
                     "isRequired": true
                 }
             }, {
                 "id": "pastLimitation",
-                "name": "Min Date Limitation",
-                "description": "(true/false) turn on and off the past date limitation",
-                "type": "CheckBox",
+                "name": "Min Range",
+                "description": "(true/false) turn on and off the Min date Range",
+                "type": "TextArea",
                 "validation": {
-                    "dataType": "Boolean",
+                    "dataType": "String",
                     "isRequired": true
                 }
             }, {
                 "id": "backDateRef",
-                "name": "Min Date Field Limitation",
+                "name": "Range Start Anchor",
                 "description": "This field get the min Date value field",
                 "type": "WorkItemField",
                 "properties": {
@@ -87,29 +88,29 @@
                     ]
                 },
                 "validation": {
-                    "dataType": "String",
                     "isRequired": false
                 }
             }, {
                 "id": "backValue",
-                "name": "Min Days Gap From Reference Date",
+                "name": "Range Start Anchor stretch",
                 "description": "(number) This field get max back days value",
                 "type": "TextArea",
                 "validation": {
-                    "dataType": "String",
+                    "dataType": "Number",
                     "isRequired": false
                 }
             }, {
                 "id": "futureLimitation",
-                "name": "Max Date Limitation",
+                "name": "Max Range",
                 "description": "(true/false) turn on and off the future date limitation",
+                "type": "TextArea",
                 "validation": {
-                    "dataType": "Boolean",
+                    "dataType": "String",
                     "isRequired": true
                 }
             }, {
                 "id": "forwordDatRef",
-                "name": "Max Date Field Limitation",
+                "name": "Range End Anchor",
                 "description": "This field get the Max Date value field",
                 "type": "WorkItemField",
                 "properties": {
@@ -118,22 +119,21 @@
                     ]
                 },
                 "validation": {
-                    "dataType": "String",
                     "isRequired": false
                 }
             }, {
                 "id": "forwordValue",
-                "name": "Max Days Gap From Reference Date",
+                "name": "Range End Anchor stretch",
                 "description": "(number) This field get max back days value",
                 "type": "TextArea",
                 "validation": {
-                    "dataType": "String",
+                    "dataType": "Number",
                     "isRequired": false
                 }
             }, {
                 "id": "stateToFollow",
-                "name": "State to Follow",
-                "description": "This field get the state you want to follow",
+                "name": "Status Target",
+                "description": "This field get the states you want to use, seperated with ',' ",
                 "type": "TextArea",
                 "validation": {
                     "dataType": "String",
@@ -141,8 +141,8 @@
                 }
             }, {
                 "id": "stateOfState",
-                "name": "State of state to Follow",
-                "description": "This field get the state of the state you want to follow (Is/IsNot)",
+                "name": "Status Condition",
+                "description": "This field control wheter the state is or not the state you want to follow (Is/IsNot)",
                 "type": "TextArea",
                 "validation": {
                     "dataType": "String",

@@ -18,9 +18,12 @@ export class Controller {
             model.DatePastLimitation = true;
         model.DateMinRefName = inputs["backDateRef"];
         model.MinDays = inputs["backValue"];
-        model.State = inputs["stateToFollow"];
-        VSS.resize();
+        if (inputs["stateToFollow"]) {
+            let states: string = inputs["stateToFollow"];
+            model.State = states.split(',');
+        }
         CreateView(model);
+        VSS.resize();
     }
     public FieldChanged(changedFields: { [key: string]: any; }) {
         WorkItemFieldChanged(changedFields);
