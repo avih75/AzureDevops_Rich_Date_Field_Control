@@ -8,7 +8,7 @@ export class Controller {
         if (inputs["dateFormat"]) {
             model.DateFormat = inputs["dateFormat"];
         }
-        if (inputs["isOrIsNot"] == "Is")
+        if (inputs["stateOfState"] == "Is")
             model.Is = true;
         if (inputs["futureLimitation"] == "true")
             model.DateFutureLimitation = true;

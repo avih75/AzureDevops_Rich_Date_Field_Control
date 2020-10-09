@@ -1,3 +1,5 @@
+import { data } from "jquery"
+
 export class RichDateTime {
 
     DateValue: Date
@@ -67,12 +69,22 @@ export class RichDateTime {
         }
     }
     public CheckIfDellay() {
-        if (this.DateValue < new Date && this.State.indexOf(this.ActualState) > -1 && this.Is)
-            return true;
-        else if (this.DateValue < new Date && this.State.indexOf(this.ActualState) < 0 && !this.Is)
-            return true;
-        else
-            return false
+        let xDate = new Date;
+        xDate.setHours(0);
+        xDate.setMinutes(0);
+        xDate.setSeconds(0);
+        if (this.DateValue < xDate) {
+            let x = this.State.indexOf(this.ActualState);
+            if (this.Is) {
+                if (x > -1)
+                    return true;
+            }
+            else {
+                if (x < 0)
+                    return true;
+            }
+        }
+        return false;
     }
     public SetNewValues(newValues: Array<{ refName: string, value: string }>) {
         newValues.forEach(valueChange => {
