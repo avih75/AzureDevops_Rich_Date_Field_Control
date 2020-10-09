@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "Rich-Date-Control",
-    "version": "1.0.167",
+    "version": "1.0.211",
     "name": "Give you the option to set date and mnipulate it",
     "scopes": [
         "vso.code_full",
@@ -71,11 +71,10 @@
             }, {
                 "id": "pastLimitation",
                 "name": "Min Range",
-                "description": "(true/false) turn on and off the Min date Range",
-                "type": "TextArea",
+                "description": "Turn on and off the Min date Range",
+                "inputMode": "CheckBox",
                 "validation": {
-                    "dataType": "String",
-                    "isRequired": true
+                    "dataType": "Boolean"
                 }
             }, {
                 "id": "backDateRef",
@@ -94,7 +93,7 @@
                 "id": "backValue",
                 "name": "Range Start Anchor stretch",
                 "description": "(number) This field get max back days value",
-                "type": "TextArea",
+                "inputMode": "TextBox",
                 "validation": {
                     "dataType": "Number",
                     "isRequired": false
@@ -102,11 +101,10 @@
             }, {
                 "id": "futureLimitation",
                 "name": "Max Range",
-                "description": "(true/false) turn on and off the future date limitation",
-                "type": "TextArea",
+                "description": "Turn on and off the future date limitation",
+                "inputMode": "CheckBox",
                 "validation": {
-                    "dataType": "String",
-                    "isRequired": true
+                    "dataType": "Boolean"
                 }
             }, {
                 "id": "forwordDatRef",
@@ -125,28 +123,27 @@
                 "id": "forwordValue",
                 "name": "Range End Anchor stretch",
                 "description": "(number) This field get max back days value",
-                "type": "TextArea",
+                "inputMode": "TextBox",
                 "validation": {
                     "dataType": "Number",
                     "isRequired": false
                 }
             }, {
                 "id": "stateToFollow",
-                "name": "Status Target",
+                "name": "Statuses Target",
                 "description": "This field get the states you want to use, seperated with ',' ",
-                "type": "TextArea",
+                "inputMode": "TextBox",
                 "validation": {
                     "dataType": "String",
                     "isRequired": false
                 }
             }, {
                 "id": "stateOfState",
-                "name": "Status Condition",
+                "name": "Status Is/Is Not",
                 "description": "This field control wheter the state is or not the state you want to follow (Is/IsNot)",
-                "type": "TextArea",
+                "inputMode": "CheckBox",
                 "validation": {
-                    "dataType": "String",
-                    "isRequired": false
+                    "dataType": "Boolean"
                 }
             }]
         }

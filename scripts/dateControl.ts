@@ -8,14 +8,11 @@ export class Controller {
         if (inputs["dateFormat"]) {
             model.DateFormat = inputs["dateFormat"];
         }
-        if (inputs["stateOfState"] == "Is")
-            model.Is = true;
-        if (inputs["futureLimitation"] == "true")
-            model.DateFutureLimitation = true;
+        model.Is = inputs["stateOfState"]
+        model.DateFutureLimitation = inputs["futureLimitation"]
         model.DateMaxRefName = inputs["forwordDatRef"];
         model.MaxDays = inputs["forwordValue"];
-        if (inputs["pastLimitation"] == "true")
-            model.DatePastLimitation = true;
+        model.DatePastLimitation = inputs["pastLimitation"]
         model.DateMinRefName = inputs["backDateRef"];
         model.MinDays = inputs["backValue"];
         if (inputs["stateToFollow"]) {
