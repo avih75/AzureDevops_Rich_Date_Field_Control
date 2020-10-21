@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "Rich-Date-Control",
-    "version": "1.0.211",
+    "version": "1.0.254",
     "name": "Give you the option to set date and mnipulate it",
     "scopes": [
         "vso.code_full",
@@ -27,6 +27,36 @@
     "content": {
         "details": {
             "path": "details.md"
+        },
+        "license": {
+            "path": "LICENSE.md"
+        },
+        "privacy": {
+            "path": "PRIVACY.md"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/avih75/AzureDevops_Rich_Date_Field_Control"
+    },
+    "links": {
+        "support": {
+            "uri": "https://github.com/avih75/AzureDevops_Rich_Date_Field_Control/issues"
+        },
+        "license": {
+            "uri": "https://github.com/avih75/AzureDevops_Rich_Date_Field_Control/blob/master/LICENSE.md"
+        },
+        "privacypolicy": {
+            "uri": "https://github.com/avih75/AzureDevops_Rich_Date_Field_Control/blob/master/PRIVACY.md"
+        },
+        "learn": {
+            "uri": "https://github.com/avih75/AzureDevops_Rich_Date_Field_Control/blob/master/README.md"
+        },
+        "repository": {
+            "uri": "https://github.com/avih75/AzureDevops_Rich_Date_Field_Control"
+        },
+        "issues": {
+            "uri": "https://github.com/avih75/AzureDevops_Rich_Date_Field_Control/issues"
         }
     },
     "files": [{
@@ -82,6 +112,7 @@
                 "description": "This field get the min Date value field",
                 "type": "WorkItemField",
                 "properties": {
+
                     "workItemFieldTypes": [
                         "DateTime"
                     ]
@@ -144,6 +175,15 @@
                 "inputMode": "CheckBox",
                 "validation": {
                     "dataType": "Boolean"
+                }
+            }, {
+                "id": "dateFormat",
+                "name": "Date Field Format",
+                "description": "This field get the format you want to use in the field",
+                "inputMode": "TextBox",
+                "validation": {
+                    "dataType": "String",
+                    "isRequired": false
                 }
             }]
         }

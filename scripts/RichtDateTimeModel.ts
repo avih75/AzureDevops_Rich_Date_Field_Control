@@ -18,9 +18,10 @@ export class RichDateTime {
     ActualState: string
     Is: boolean
     DateFormat: string
-
+    FieldsRefNames: Array<string>
     constructor() {
         this.State = new Array<string>();
+        this.FieldsRefNames = new Array<string>();
         this.DateFutureLimitation = false
         this.DatePastLimitation = false
         this.MaxDays = 0
@@ -28,7 +29,7 @@ export class RichDateTime {
         this.DateMaxValue = new Date;
         this.DateMinValue = new Date;
         this.Is = false;
-        this.DateFormat = "dd/mm/yyyy";
+        this.DateFormat = "dd mm yy";
     }
     public GetFieldRefNames() {
         let fieldsRefNames: Array<string> = new Array<string>();
@@ -42,25 +43,25 @@ export class RichDateTime {
         return fieldsRefNames;
     }
     public SetValues(recivedValues: IDictionaryStringTo<Object>) {
-        if (recivedValues[this.DateValueRefName].toString())
+        if (recivedValues[this.DateValueRefName])
             this.DateValue = new Date(recivedValues[this.DateValueRefName].toString());
         else
             this.DateValue = undefined;
-        if (this.DateFutureLimitation) {
+        if (this.DateFutureLimitation==true) {
             if (this.DateMaxRefName) {
                 if (recivedValues[this.DateMaxRefName])
                     this.DateMaxValue = new Date(recivedValues[this.DateMaxRefName].toString());
                 else
-                    this.DateMaxValue = new Date;
+                    this.DateMaxValue = new Date(this.DateMaxValue.getTime() + (86400000 * this.MaxDays));
             }
             this.MaxDate = new Date(this.DateMaxValue.getTime() + (86400000 * this.MaxDays));
         }
-        if (this.DatePastLimitation) {
+        if (this.DatePastLimitation==true) {
             if (this.DateMinRefName) {
                 if (recivedValues[this.DateMinRefName])
                     this.DateMinValue = new Date(recivedValues[this.DateMinRefName].toString());
                 else
-                    this.DateMinValue = new Date;
+                    this.DateMinValue = new Date(this.DateMinValue.getTime() + (86400000 * this.MinDays));
             }
             this.MinDate = new Date(this.DateMinValue.getTime() + (86400000 * this.MinDays));
         }
@@ -95,9 +96,9 @@ export class RichDateTime {
                 this.DateMaxValue = new Date(valueChange.value);
                 this.MaxDate = new Date(this.DateMaxValue.getTime() + (86400000 * this.MaxDays));
             }
-            else if (valueChange.refName == this.DateMinRefName) {
+            else if (this.DatePastLimitation && valueChange.refName == this.DateMinRefName) {
                 this.DateMinValue = new Date(valueChange.value);
-                this.MinDate = new Date(this.DateMaxValue.getTime() - (86400000 * this.MinDays));
+                this.MinDate = new Date(this.DateMinValue.getTime() - (86400000 * this.MinDays));
             }
             else if (valueChange.refName == "System.State") {
                 this.ActualState = valueChange.value;
