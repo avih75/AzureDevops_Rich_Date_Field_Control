@@ -70,6 +70,12 @@ function RefreshTheView() {
         }
         else
             $("#datepicker").css("background-color", "inherit");
+        if (dateModel.CheckIfOutOfRange()) {
+            $("#dateErrorLabel").text("Date out of Range");
+        }
+        else {
+            $("#dateErrorLabel").text("");
+        }
     }
     if (dateModel.MaxDate != undefined) {
         $("#datepicker").attr("max", ConverToViewMode(dateModel.MaxDate));

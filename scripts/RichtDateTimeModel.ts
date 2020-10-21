@@ -47,7 +47,7 @@ export class RichDateTime {
             this.DateValue = new Date(recivedValues[this.DateValueRefName].toString());
         else
             this.DateValue = undefined;
-        if (this.DateFutureLimitation==true) {
+        if (this.DateFutureLimitation == true) {
             if (this.DateMaxRefName) {
                 if (recivedValues[this.DateMaxRefName])
                     this.DateMaxValue = new Date(recivedValues[this.DateMaxRefName].toString());
@@ -56,7 +56,7 @@ export class RichDateTime {
             }
             this.MaxDate = new Date(this.DateMaxValue.getTime() + (86400000 * this.MaxDays));
         }
-        if (this.DatePastLimitation==true) {
+        if (this.DatePastLimitation == true) {
             if (this.DateMinRefName) {
                 if (recivedValues[this.DateMinRefName])
                     this.DateMinValue = new Date(recivedValues[this.DateMinRefName].toString());
@@ -104,5 +104,11 @@ export class RichDateTime {
                 this.ActualState = valueChange.value;
             }
         });
+    }
+    public CheckIfOutOfRange() {
+        if (this.DateValue > this.MaxDate || this.DateValue < this.MinDate) {
+            return false
+        }
+        return true;
     }
 }

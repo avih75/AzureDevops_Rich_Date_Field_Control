@@ -15,6 +15,10 @@ For example:
 * Two weeks window (Relative Range between Now-7 and Now+7)
 * Dynamic range between CreatedDate to DueDate (custom)
 
+### Visualization out of range
+![Layout Customization](img/D1.png)
+The control visualize by message when the date selected is out range (when rage changes by the anchor).
+
 ### Target State Date Visualization
 ![Layout Customization](img/B2.png)  
 The control color visualize work item state target  
