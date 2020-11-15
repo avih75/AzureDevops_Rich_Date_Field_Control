@@ -106,9 +106,9 @@ export class RichDateTime {
         });
     }
     public CheckIfOutOfRange() {
-        if (this.DateValue > this.MaxDate || this.DateValue < this.MinDate) {
-            return false
+        if ((this.DateFutureLimitation && this.DateValue > this.MaxDate) || (this.DatePastLimitation && this.DateValue < this.MinDate)) {
+            return true
         }
-        return true;
+        return false;
     }
 }

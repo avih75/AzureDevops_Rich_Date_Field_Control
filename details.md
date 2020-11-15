@@ -17,7 +17,8 @@ For example:
 
 ### Visualization out of range
 ![Layout Customization](img/D1.png)
-The control visualize by message when the date selected is out range (when rage changes by the anchor).
+
+The control visualize by message when the date selected is out of range (when rage changes by the anchor).
 
 ### Target State Date Visualization
 ![Layout Customization](img/B2.png)  

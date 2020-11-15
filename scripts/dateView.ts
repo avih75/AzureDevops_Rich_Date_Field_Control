@@ -1,8 +1,9 @@
 import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
 import { RichDateTime } from "./RichtDateTimeModel";
 import RestClient = require("TFS/WorkItemTracking/RestClient");
-//let client = RestClient.getClient();
+
 let dateModel: RichDateTime;
+
 export function WorkItemFieldChanged(changedFields: { [key: string]: any; }) {
     let valuesList: Array<{ refName: string, value: string }> = new Array<{ refName: string, value: string }>();
     let newDateValue: Date = changedFields[dateModel.DateValueRefName];
@@ -71,7 +72,7 @@ function RefreshTheView() {
         else
             $("#datepicker").css("background-color", "inherit");
         if (dateModel.CheckIfOutOfRange()) {
-            $("#dateErrorLabel").text("Date out of Range");
+            $("#dateErrorLabel").text("Selected date is out of Range");
         }
         else {
             $("#dateErrorLabel").text("");
@@ -121,8 +122,4 @@ function ConverToViewMode(date: Date) {
     let today = date.getFullYear() + "-" + (month) + "-" + (day); // - /
     //let today = (day) + "-" + (month) + "-" + date.getFullYear(); // - /
     return today;
-}
-// async function IsReadOnly(refName: string) {
-//     let projectName: string = "nxowdncjofnmc";
-//     return await (await client.getField(refName, projectName)).readOnly;
-// } 
+}  
