@@ -1,7 +1,8 @@
 import { WorkItemFormService } from "TFS/WorkItemTracking/Services";
 import { RichDateTime } from "./RichtDateTimeModel";
 import RestClient = require("TFS/WorkItemTracking/RestClient");
-
+let regional: string;
+let neededFormat: string = "YYYY/MM/DD";
 let dateModel: RichDateTime;
 
 export function WorkItemFieldChanged(changedFields: { [key: string]: any; }) {
@@ -36,19 +37,12 @@ export function WorkItemFieldChanged(changedFields: { [key: string]: any; }) {
     // });
 }
 export function CreateView(model: RichDateTime) {
+    regional = window.navigator.language;
+    let geolocation = window.navigator.geolocation;
     dateModel = model;
     GetValues();
     $("#body").css("background-color", "inherit");
     $("#datepicker").change(() => OnFieldChanged());
-    //let x = $("#datepicker");
-    // IsReadOnly(dateModel.DateValueRefName).then((readOnly: boolean) => {
-    //     if (readOnly) {
-    //         $("#datepicker").attr("disabled", "true");
-    //     }
-    //     else {
-    //         $("#datepicker").removeAttr("disabled");
-    //     }
-    // });
 }
 function GetValues() {
     // let fieldsRefNames: Array<string> = dateModel.GetFieldRefNames();
@@ -66,11 +60,19 @@ function GetValues() {
 function RefreshTheView() {
     if (dateModel.DateValue != undefined) {
         $("#datepicker").val((ConverToViewMode(dateModel.DateValue)));
-        if (dateModel.CheckIfDellay()) {
-            $("#datepicker").css("background-color", "lightpink");
-        }
-        else
-            $("#datepicker").css("background-color", "inherit");
+        WorkItemFormService.getService().then(
+            (service) => {
+                if (dateModel.CheckIfDellay()) {
+                    $("#datepicker").css("background-color", "lightpink");
+                    dateModel.StatusValue = true;
+                    service.setFieldValue(dateModel.StatusRefName, true);
+                }
+                else {
+                    $("#datepicker").css("background-color", "inherit");
+                    dateModel.StatusValue = false;
+                    service.setFieldValue(dateModel.StatusRefName, false);
+                }
+            })
         if (dateModel.CheckIfOutOfRange()) {
             $("#dateErrorLabel").text("Selected date is out of Range");
         }
@@ -88,34 +90,32 @@ function RefreshTheView() {
 function OnFieldChanged() {
     WorkItemFormService.getService().then(
         (service) => {
-            service.setFieldValue(dateModel.DateValueRefName, GiveShortDate($("#datepicker").val()));
+            let date: Date = $("#datepicker").val();
+            let values = date.toString().split('-');
+            let stringDate: string;
+            if (regional == "he" || regional == "he-IL" || regional == "en-GB") {
+                stringDate = values[2] + "/" + values[1] + "/" + values[0];
+            }
+            else if (regional == "en-US" || regional == "en") {
+                stringDate = values[1] + "/" + values[2] + "/" + values[0];
+            }
+            else {
+                stringDate = date.toDateString();
+            }
+
+            stringDate += " 12:00:00"; // Append the hour component
+
+            try {
+                const dateValue = new Date(stringDate); // Convert stringDate to a Date object
+                service.setFieldValue(dateModel.DateValueRefName, dateValue);
+            }
+            catch {
+                // Handle any error that may occur
+            }
         }
     );
-}
-function GiveShortDate(dateToConvert: Date) {
-    //return dateToConvert.toString().replace('-', '/')
-    let xD: number = (new Date()).getMonth() + 1;
-    let xx = (new Date()).toLocaleString();//split('/');
-    let xx1 = (new Date()).toDateString();//.split('/');
-    let xx2 = new Date().toString();
-    let xx3 = new Date().toGMTString();
-    let xx4 = new Date().toISOString();
-    let xx5 = new Date().toJSON();
-    let xx6 = new Date().toLocaleDateString();
-    let xx7 = new Date().toUTCString();
-    let x = dateToConvert.toString().split('-');
-    let dateNew: string;
-    if (xx[0] == xD.toString()) {
-        dateNew = x[2] + "/" + x[1] + "/" + x[0];//+ " 00:00";  
-    }
-    else if (xx[1] == xD.toString()) {
-        dateNew = x[1] + "/" + x[2] + "/" + x[0];//+ " 00:00"; 
-    }
-    else {
-        dateNew = x[2] + "/" + x[1] + "/" + x[0];//+ " 00:00";  
-    }
-    return dateNew;
-}
+
+} 
 function ConverToViewMode(date: Date) {
     let day = ("0" + date.getDate()).slice(-2);
     let month = ("0" + (date.getMonth() + 1)).slice(-2);

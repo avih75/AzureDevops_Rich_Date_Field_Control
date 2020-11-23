@@ -1,7 +1,8 @@
 import { data } from "jquery"
 
 export class RichDateTime {
-
+    StatusRefName: string;
+    StatusValue: boolean;
     DateValue: Date
     DateValueRefName: string
     DateFutureLimitation: boolean
