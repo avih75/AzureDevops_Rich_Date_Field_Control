@@ -70,11 +70,19 @@ function GetValues() {
 function RefreshTheView() {
     if (dateModel.DateValue != undefined) {
         $("#datepicker").val((ConverToViewMode(dateModel.DateValue)));
-        if (dateModel.CheckIfDellay()) {
-            $("#datepicker").css("background-color", "lightpink");
-        }
-        else
-            $("#datepicker").css("background-color", "inherit");
+        WorkItemFormService.getService().then(
+            (service) => {
+                if (dateModel.CheckIfDellay()) {
+                    $("#datepicker").css("background-color", "lightpink");
+                    dateModel.StatusValue = true;
+                    service.setFieldValue(dateModel.StatusRefName, true);
+                }
+                else {
+                    $("#datepicker").css("background-color", "inherit");
+                    dateModel.StatusValue = false;
+                    service.setFieldValue(dateModel.StatusRefName, false);
+                }
+            })
         if (dateModel.CheckIfOutOfRange()) {
             $("#dateErrorLabel").text("Selected date is out of Range");
         }
@@ -104,13 +112,12 @@ function OnFieldChanged() {
                 stringDate = values[1] + "/" + values[2] + "/" + values[0];
             }
             else {
-                stringDate = date.toDateString(); 
+                stringDate = date.toDateString();
             }
             service.setFieldValue(dateModel.DateValueRefName, stringDate);
         }
     );
-
-} 
+}
 function ConverToViewMode(date: Date) {
     let day = ("0" + date.getDate()).slice(-2);
     let month = ("0" + (date.getMonth() + 1)).slice(-2);

@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "Rich-Date-Control",
-    "version": "1.0.273",
+    "version": "1.0.274",
     "name": "Give you the option to set date and manipulate it",
     "scopes": [
         "vso.code_full",
@@ -145,6 +145,19 @@
                 "properties": {
                     "workItemFieldTypes": [
                         "DateTime"
+                    ]
+                },
+                "validation": {
+                    "isRequired": false
+                }
+            }, {
+                "id": "stateValue",
+                "name": "Boolean Field - Is the Date Passes",
+                "description": "This field get the Max Date value field",
+                "type": "WorkItemField",
+                "properties": {
+                    "workItemFieldTypes": [
+                        "Boolean"
                     ]
                 },
                 "validation": {

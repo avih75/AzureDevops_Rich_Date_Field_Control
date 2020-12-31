@@ -4,6 +4,8 @@ export class Controller {
     constructor() {
         let inputs = VSS.getConfiguration().witInputs;
         let model: RichDateTime = new RichDateTime();
+        model.StatusRefName=inputs["stateValue"];
+        model.FieldsRefNames.push(model.StatusRefName);
         model.DateValueRefName = inputs["dateValue"];
         model.FieldsRefNames.push(model.DateValueRefName);
         if (inputs["dateFormat"]) {
