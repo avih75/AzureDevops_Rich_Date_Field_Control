@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "Rich-Date-Control",
-    "version": "1.0.274",
+    "version": "1.0.284",
     "name": "Give you the option to set date and manipulate it",
     "scopes": [
         "vso.code_full",
@@ -188,6 +188,15 @@
                 "inputMode": "CheckBox",
                 "validation": {
                     "dataType": "Boolean"
+                }
+            }, {
+                "id": "stateDays",
+                "name": "Check Date Gap",
+                "description": "Add Gap to the check if the date for state passed",
+                "inputMode": "TextBox",
+                "validation": {
+                    "dataType": "Number",
+                    "isRequired": false
                 }
             }, {
                 "id": "dateFormat",

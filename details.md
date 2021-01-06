@@ -27,6 +27,15 @@ For example:
 - Color red when date passed and state Is Not one of "New" (On StartDate)
 - Color red when date passed and state Is one of "New","Fixed", "Resolved" (On DueDate)
 
+### Amit the State of Passed date
+
+the control set the field value (witch you provided) regarding the state
+For example:
+- True if the Date passe
+- False if you still on time
+this can give you the option to manipulate the form by adding ruels on this field
+as block change/save the work item if it in paticular state
+
 ## Configuration
 ### General
 * Date Field                    : (work item field) that will contain the date (short date) 

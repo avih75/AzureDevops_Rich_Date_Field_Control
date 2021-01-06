@@ -4,7 +4,7 @@ export class Controller {
     constructor() {
         let inputs = VSS.getConfiguration().witInputs;
         let model: RichDateTime = new RichDateTime();
-        model.StatusRefName=inputs["stateValue"];
+        model.StatusRefName = inputs["stateValue"];  // ?! why ref name ?!
         model.FieldsRefNames.push(model.StatusRefName);
         model.DateValueRefName = inputs["dateValue"];
         model.FieldsRefNames.push(model.DateValueRefName);
@@ -15,10 +15,10 @@ export class Controller {
         model.FieldsRefNames.push("System.State");
         if (inputs["stateToFollow"]) {
             let states: string = inputs["stateToFollow"];
-            model.State = states.split(',');
+            model.States = states.split(',');
         }
         if (inputs["futureLimitation"] && (inputs["futureLimitation"] == true || inputs["futureLimitation"] == "true")) {
-            model.DateFutureLimitation = true; //inputs["futureLimitation"];
+            model.DateFutureLimitation = true;
             if (model.DateFutureLimitation) {
                 model.DateMaxRefName = inputs["forwordDatRef"];
                 model.FieldsRefNames.push(model.DateMaxRefName)
@@ -39,6 +39,7 @@ export class Controller {
         else {
             model.DatePastLimitation = false;
         }
+        model.StateDays = inputs["stateDays"] ? inputs["stateDays"] : 0;
         CreateView(model);
         VSS.resize();
     }
