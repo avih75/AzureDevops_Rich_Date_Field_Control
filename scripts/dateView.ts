@@ -42,17 +42,7 @@ export function CreateView(model: RichDateTime) {
     dateModel = model;
     GetValues();
     $("#body").css("background-color", "inherit");
-    $("#datepicker").change(() => OnFieldChanged());
-
-    //let x = $("#datepicker");
-    // IsReadOnly(dateModel.DateValueRefName).then((readOnly: boolean) => {
-    //     if (readOnly) {
-    //         $("#datepicker").attr("disabled", "true");
-    //     }
-    //     else {
-    //         $("#datepicker").removeAttr("disabled");
-    //     }
-    // });
+    $("#datepicker").change(() => OnFieldChanged()); 
 }
 function GetValues() {
     // let fieldsRefNames: Array<string> = dateModel.GetFieldRefNames();
