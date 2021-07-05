@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "Rich-Date-Control",
-    "version": "1.0.285",
+    "version": "1.0.289",
     "name": "Give you the option to set date and manipulate it",
     "scopes": [
         "vso.code_full",
@@ -151,19 +151,6 @@
                     "isRequired": false
                 }
             }, {
-                "id": "stateValue",
-                "name": "Boolean Field - Is the Date Passes",
-                "description": "This field get the Max Date value field",
-                "type": "WorkItemField",
-                "properties": {
-                    "workItemFieldTypes": [
-                        "Boolean"
-                    ]
-                },
-                "validation": {
-                    "isRequired": false
-                }
-            }, {
                 "id": "forwordValue",
                 "name": "Range End Anchor stretch",
                 "description": "(number) This field get max back days value",
@@ -179,6 +166,19 @@
                 "inputMode": "TextBox",
                 "validation": {
                     "dataType": "String",
+                    "isRequired": false
+                }
+            }, {
+                "id": "stateValue",
+                "name": "Boolean Field - Is the Date Passes",
+                "description": "This field get the Max Date value field",
+                "type": "WorkItemField",
+                "properties": {
+                    "workItemFieldTypes": [
+                        "Boolean"
+                    ]
+                },
+                "validation": {
                     "isRequired": false
                 }
             }, {

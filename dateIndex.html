@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="scripts/jquery/jquery-ui.css">
+    <script src="scripts/jquery/jquery-1.12.4.js"></script>
+    <script src="scripts/jquery/jquery-ui.js"></script>
     <script src="scripts/VSS.SDK.min.js"></script>
     <script>
     </script>
@@ -22,9 +22,6 @@
             VSS.notifyLoadSucceeded();
         });
         VSS.resize();
-        // $(function() {
-        //     $("#datepicker").datepicker().datepicker("option", "dateFormat", "dd/mm/yy");
-        // });
     </script>
     <style>
         .date {
@@ -53,7 +50,6 @@
 
 <body style="background-color: inherit">
     <input id="datepicker" type="date" name="date" style="width: 50%;" placeholder="dd-mm-yyyy" class="date" onkeydown="return false" />
-    <!-- <input id="datepicker" type="text" name="date" style="width: 50%;" class="date" onkeydown="return false" /> -->
     <label id="dateErrorLabel" style="color: red;font-size: smaller;width: 50%;"></label>
 </body>
 

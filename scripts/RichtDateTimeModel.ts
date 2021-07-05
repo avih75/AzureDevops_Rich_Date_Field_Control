@@ -49,7 +49,7 @@ export class RichDateTime {
     public SetValues(recivedValues: IDictionaryStringTo<Object>) {
         let stateGapInMil: number = (86400000 * this.StateDays);
         let maxGapInMil: number = (86400000 * this.MaxDays);
-        let minGapInMil: number = (86400000 * this.MaxDays);
+        let minGapInMil: number = (86400000 * this.MinDays);
         if (recivedValues[this.DateValueRefName])
             this.DateValue = new Date(recivedValues[this.DateValueRefName].toString());
         else
