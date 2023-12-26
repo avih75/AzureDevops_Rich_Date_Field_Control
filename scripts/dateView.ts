@@ -43,16 +43,6 @@ export function CreateView(model: RichDateTime) {
     GetValues();
     $("#body").css("background-color", "inherit");
     $("#datepicker").change(() => OnFieldChanged());
-
-    //let x = $("#datepicker");
-    // IsReadOnly(dateModel.DateValueRefName).then((readOnly: boolean) => {
-    //     if (readOnly) {
-    //         $("#datepicker").attr("disabled", "true");
-    //     }
-    //     else {
-    //         $("#datepicker").removeAttr("disabled");
-    //     }
-    // });
 }
 function GetValues() {
     // let fieldsRefNames: Array<string> = dateModel.GetFieldRefNames();
@@ -70,11 +60,19 @@ function GetValues() {
 function RefreshTheView() {
     if (dateModel.DateValue != undefined) {
         $("#datepicker").val((ConverToViewMode(dateModel.DateValue)));
-        if (dateModel.CheckIfDellay()) {
-            $("#datepicker").css("background-color", "lightpink");
-        }
-        else
-            $("#datepicker").css("background-color", "inherit");
+        WorkItemFormService.getService().then(
+            (service) => {
+                if (dateModel.CheckIfDellay()) {
+                    $("#datepicker").css("background-color", "lightpink");
+                    dateModel.StatusValue = true;
+                    service.setFieldValue(dateModel.StatusRefName, true);
+                }
+                else {
+                    $("#datepicker").css("background-color", "inherit");
+                    dateModel.StatusValue = false;
+                    service.setFieldValue(dateModel.StatusRefName, false);
+                }
+            })
         if (dateModel.CheckIfOutOfRange()) {
             $("#dateErrorLabel").text("Selected date is out of Range");
         }
@@ -94,19 +92,26 @@ function OnFieldChanged() {
         (service) => {
             let date: Date = $("#datepicker").val();
             let values = date.toString().split('-');
-            let stringDate: string = "";
-            // service.setFieldValue(dateModel.DateValueRefName, GiveShortDate2(date));
+            let stringDate: string;
             if (regional == "he" || regional == "he-IL" || regional == "en-GB") {
                 stringDate = values[2] + "/" + values[1] + "/" + values[0];
             }
             else if (regional == "en-US" || regional == "en") {
-
                 stringDate = values[1] + "/" + values[2] + "/" + values[0];
             }
             else {
-                stringDate = date.toDateString(); 
+                stringDate = date.toDateString();
             }
-            service.setFieldValue(dateModel.DateValueRefName, stringDate);
+
+            stringDate += " 12:00:00"; // Append the hour component
+
+            try {
+                const dateValue = new Date(stringDate); // Convert stringDate to a Date object
+                service.setFieldValue(dateModel.DateValueRefName, dateValue);
+            }
+            catch {
+                // Handle any error that may occur
+            }
         }
     );
 
