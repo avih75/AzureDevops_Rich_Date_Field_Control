@@ -70,7 +70,12 @@ function RefreshTheView() {
                 else {
                     $("#datepicker").css("background-color", "inherit");
                     dateModel.StatusValue = false;
-                    service.setFieldValue(dateModel.StatusRefName, false);
+                    //service.setFieldValue(dateModel.StatusRefName, false);
+                    service.getFieldValue(dateModel.StatusRefName).then((value) => {
+                        if (value) {
+                          service.setFieldValue(dateModel.StatusRefName, false);
+                        }
+                      });
                 }
             })
         if (dateModel.CheckIfOutOfRange()) {
