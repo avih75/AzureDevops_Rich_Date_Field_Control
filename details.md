@@ -1,7 +1,4 @@
 # Rich Date Control
-Hi there! This extensions is a fix to the original one by AviHadad. 
-It sets the hour to mid day instead of midnight which causes issues between regions in certain hours.  
-Solving issue described here: https://github.com/avih75/AzureDevops_Rich_Date_Field_Control/issues/9
 
 ## Features
 ### Date display
