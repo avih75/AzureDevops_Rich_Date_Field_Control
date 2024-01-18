@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "Rich-Date-Control",
-    "version": "1.0.273",
+    "version": "1.0.32",
     "name": "Give you the option to set date and manipulate it",
     "scopes": [
         "vso.code_full",
@@ -169,12 +169,34 @@
                     "isRequired": false
                 }
             }, {
+                "id": "stateValue",
+                "name": "Boolean Field - Is the Date Passes",
+                "description": "This field get the Max Date value field",
+                "type": "WorkItemField",
+                "properties": {
+                    "workItemFieldTypes": [
+                        "Boolean"
+                    ]
+                },
+                "validation": {
+                    "isRequired": false
+                }
+            }, {
                 "id": "stateOfState",
                 "name": "Status Is/Is Not",
                 "description": "This field control wheter the state is or not the state you want to follow (Is/IsNot)",
                 "inputMode": "CheckBox",
                 "validation": {
                     "dataType": "Boolean"
+                }
+            }, {
+                "id": "stateDays",
+                "name": "Check Date Gap",
+                "description": "Add Gap to the check if the date for state passed",
+                "inputMode": "TextBox",
+                "validation": {
+                    "dataType": "Number",
+                    "isRequired": false
                 }
             }, {
                 "id": "dateFormat",

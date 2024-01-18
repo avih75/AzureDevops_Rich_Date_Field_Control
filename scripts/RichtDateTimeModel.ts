@@ -1,7 +1,8 @@
 import { data } from "jquery"
 
 export class RichDateTime {
-
+    StatusRefName: string;
+    StatusValue: boolean;
     DateValue: Date
     DateValueRefName: string
     DateFutureLimitation: boolean
@@ -34,6 +35,7 @@ export class RichDateTime {
     public GetFieldRefNames() {
         let fieldsRefNames: Array<string> = new Array<string>();
         fieldsRefNames.push(this.DateValueRefName);
+        fieldsRefNames.push(this.StatusRefName);
         if (this.DateMaxRefName) {
             fieldsRefNames.push(this.DateMaxRefName)
         }
